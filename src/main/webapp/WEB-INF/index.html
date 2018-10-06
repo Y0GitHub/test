@@ -1,0 +1,61 @@
+﻿<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="public/_meta::meta">
+    <!--[if IE 6]>
+
+    <![endif]-->
+    <!--/meta 作为公共模版分离出去-->
+
+    <title>软件测试</title>
+    <meta name="keywords" content="H-ui.admin v3.0,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+    <meta name="description" content="H-ui.admin v3.0，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+</head>
+<body>
+<!--_header 作为公共模版分离出去-->
+<th:block th:include="public/_header"></th:block>
+<!--/_header 作为公共模版分离出去-->
+
+<!--_menu 作为公共模版分离出去-->
+<th:block th:include="public/_menu"></th:block>
+<div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a>
+</div>
+<!--/_menu 作为公共模版分离出去-->
+
+<section class="Hui-article-box">
+    <nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a>
+        <span class="c-999 en">&gt;</span>
+        <span class="c-666">我的桌面</span>
+        <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+           href="javascript:location.replace(location.href);" title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+    <div class="Hui-article">
+        <article class="cl pd-20">
+
+        </article>
+        <footer class="footer">
+            <p>
+                感谢jQuery、layer、laypage、Validform、UEditor、My97DatePicker、iconfont、Datatables、WebUploaded、icheck、highcharts、bootstrap-Switch<br>
+                Copyright &copy;2015 H-ui.admin v3.0 All Rights Reserved.<br> 本后台系统由<a href="http://www.h-ui.net/"
+                                                                                       target="_blank" title="H-ui前端框架">H-ui前端框架</a>提供前端技术支持
+            </p>
+        </footer>
+    </div>
+</section>
+
+<!--_footer 作为公共模版分离出去-->
+<th:block th:include="public/_footer"></th:block>
+<!--/_footer /作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript">
+
+</script>
+<!--/请在上方写此页面业务相关的脚本-->
+
+<!--此乃百度统计代码，请自行删除-->
+<script>
+
+</script>
+<!--/此乃百度统计代码，请自行删除-->
+</body>
+</html>
