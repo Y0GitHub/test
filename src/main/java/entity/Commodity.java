@@ -1,6 +1,13 @@
 package entity;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * @Author: ky
@@ -22,7 +29,7 @@ public class Commodity {
     public void setCommodityId(long commodityId) {
         this.commodityId = commodityId;
     }
-
+    @NotEmpty(message = "用户名不能为空")
     public String getCommodityName() {
         return commodityName;
     }
@@ -30,7 +37,7 @@ public class Commodity {
     public void setCommodityName(String commodityName) {
         this.commodityName = commodityName;
     }
-
+    @Digits(integer = 8,fraction = 2,message = "数字超出范围了！")
     public double getCommodityPrice() {
         return commodityPrice;
     }
@@ -46,4 +53,5 @@ public class Commodity {
     public void setCommodityDescription(String commodityDescription) {
         this.commodityDescription = commodityDescription;
     }
+
 }

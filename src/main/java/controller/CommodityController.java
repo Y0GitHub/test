@@ -1,17 +1,21 @@
 package controller;
 
+import Dao.CommodityDao;
 import Dao.UserDao;
 import DaoImpl.UserDaoImpl;
 import com.fasterxml.jackson.annotation.JsonView;
+import entity.Commodity;
 import entity.Test;
 import entity.User;
 import entity.User2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import util.PageUitl;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -21,12 +25,38 @@ import java.util.List;
 @Controller
 public class CommodityController {
     @Autowired
-    private UserDao userDao;
+    private CommodityDao commodityDao;
     @RequestMapping("/")
-    public String index(Model model){
-
-        System.out.println("asd");
-        model.addAttribute("list",userDao.findOne(""));
+    public String a(){
+        return "redirect:/list";
+    }
+    @RequestMapping("/list")
+    public String index(Model model, @ModelAttribute String condition,
+                        @RequestParam(name = "page",defaultValue = "0") int page,
+                        @RequestParam(name = "size",defaultValue = "4") int size){
+        System.out.println("/list");
+        PageUitl pageUitl=new PageUitl(page,size);
+        pageUitl.setList(commodityDao.findAllCommodities(condition,pageUitl));
+        model.addAttribute("list",pageUitl);
         return "index";
+    }
+    @PostMapping(value = {"/updateCommodity"})
+    public String update(@Valid Commodity commodity, BindingResult result){
+        System.out.println(commodity.getCommodityId()+"-*-*-*-*");
+        commodityDao.updateCommodity(commodity);
+        return "redirect:/list";
+    }
+
+    @PostMapping(value = {"/addCommodity"})
+    public String add(@Valid Commodity commodity, BindingResult result){
+        System.out.println(commodity.getCommodityId()+"-*-*-*-*");
+        commodityDao.addCommodity(commodity);
+        return "redirect:/list";
+    }
+    @GetMapping("/deleteCommodity")
+    @ResponseBody
+    public String delete(@Valid Commodity commodity, BindingResult result){
+        commodityDao.deleteCommoditiy(commodity);
+        return "success";
     }
 }
