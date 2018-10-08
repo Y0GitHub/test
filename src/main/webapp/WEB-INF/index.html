@@ -32,11 +32,17 @@
     <div class="Hui-article">
         <article class="cl pd-20">
             <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l"><a href="javascript:;" onclick="modal(this,'add')"
-                                                                       class="btn btn-danger radius"> 添加</a></span>
+                                                                       class="btn btn-primary radius"> 添加</a></span>
                 <!--<span class="Huialert Huialert-error"><i class="Hui-iconfont">&#xe6a6;
                 </i><span th:if="${#fields.hasErrors('commodityId')}" th:errors="">错误状态提示
                 </span>
                 </span>-->
+                <form class="form-inline" role="form" th:action="@{/list}" style="width: 400px;margin-left: 200px">
+
+                    <input class="form-control radius" type="text" name="condition" th:value="${condition}"/>
+                    <input class="btn btn-app btn-success radius list-inline" type="submit" value="搜索"/>
+
+                </form>
                 <span
                         class="r">共有数据：<strong th:text="${list.count}">54</strong> 条</span></div>
 
@@ -62,7 +68,7 @@
                         <td th:text="${co.commodityDescription}"></td>
                         <td>
                             <button class="btn btn-secondary radius" onclick="modal(this,'update')">修改</button>
-                            <button class="btn btn-secondary radius" th:onclick="'javascript:del('+${co.commodityId}+')'">删除</button>
+                            <button class="btn btn-danger radius" th:onclick="'javascript:del('+${co.commodityId}+')'">删除</button>
                         </td>
                     </tr>
                     </tbody>
@@ -102,20 +108,22 @@
 <!--/_footer /作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript">
+<script type="text/javascript" th:inline="javascript">
     function modal(obj, flag) {
         $("input[name='commodityId']").val("");
         $("input[name='commodityName']").val("");
         $("input[name='commodityPrice']").val("");
         $("input[name='commodityDescription']").val("");
         if (flag == "add") {
-            $("#modal").attr("action","/addCommodity");
+            var action=/*[[@{/addCommodity}]]*/'';
+            $("#modal").attr("action",action);
             $("input[name='commodityId']").removeAttr("name");
             $(".modal-title").html("添加商品");
         }
         if (flag == "update") {
             $("input[name='commodityId']").attr("name","commodityId");
-            $("#modal").attr("action","/updateCommodity");
+            var action=/*[[@{/updateCommodity}]]*/'';
+            $("#modal").attr("action",action);
             var parent=obj.parentNode.parentNode;
             var td=parent.getElementsByTagName('td');
             $("input[name='commodityId']").val(td[1].innerHTML);
@@ -128,7 +136,7 @@
     }
     function del(id) {
         if(confirm("确定删除id为【"+id+"】的记录?")){
-        $.get("/deleteCommodity",{commodityId:id},function () {
+        $.get(/*[[@{/deleteCommodity}]]*/'',{commodityId:id},function () {
             alert("删除成功！");
             location.replace(location.href);
         });

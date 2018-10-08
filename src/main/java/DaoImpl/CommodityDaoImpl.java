@@ -23,13 +23,14 @@ import java.util.List;
  */
 @Service
 public class CommodityDaoImpl extends HibernateDaoSupport implements CommodityDao {
-    public List<Commodity> findAllCommodities(Object condition, PageUitl pageUitl) {
+    public List<Commodity> findAllCommodities(String condition, PageUitl pageUitl) {
         pageUitl.setPage(pageUitl.getPage()<0?0:pageUitl.getPage());
         pageUitl.setSize(pageUitl.getSize()<0?0:pageUitl.getSize());
         DetachedCriteria criteria=DetachedCriteria.forClass(Commodity.class);
-        System.out.println("--"+condition+"----");
-        if(condition.toString()=="")
-        criteria.add(Restrictions.like("commodityName",(String) condition));
+        if(condition!=null&&!("".equals(condition))){
+            System.out.println("--"+condition+"----");
+            criteria.add(Restrictions.like("commodityName",(String) "%"+condition+"%"));
+        }
         if((pageUitl.getCount())==-1){
             pageUitl.setCount( this.getHibernateTemplate().
                     findByCriteria(criteria).size());

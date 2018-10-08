@@ -31,7 +31,7 @@ public class CommodityController {
         return "redirect:/list";
     }
     @RequestMapping("/list")
-    public String index(Model model, @ModelAttribute String condition,
+    public String index(Model model, @ModelAttribute("condition") String condition,
                         @RequestParam(name = "page",defaultValue = "0") int page,
                         @RequestParam(name = "size",defaultValue = "4") int size){
         System.out.println("/list");

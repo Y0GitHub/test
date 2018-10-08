@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface CommodityDao {
     void addCommodity(Commodity commodity);
-    List<Commodity> findAllCommodities(Object condition, PageUitl pageUitl);
+    List<Commodity> findAllCommodities(String condition, PageUitl pageUitl);
     void updateCommodity(Commodity commodity);
     void deleteCommoditiy(Commodity commodity);
 }
