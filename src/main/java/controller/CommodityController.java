@@ -1,13 +1,7 @@
 package controller;
 
 import Dao.CommodityDao;
-import Dao.UserDao;
-import DaoImpl.UserDaoImpl;
-import com.fasterxml.jackson.annotation.JsonView;
 import entity.Commodity;
-import entity.Test;
-import entity.User;
-import entity.User2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import util.PageUitl;
 
 import javax.validation.Valid;
-import java.util.List;
 
 /**
  * @Author: ky

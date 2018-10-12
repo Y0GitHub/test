@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="css.css" rel="stylesheet">
+    <title>日期加减</title>
+</head>
+<body style="background-color: cadetblue;">
+<div id="content" style="margin:60px auto;background-color: ghostwhite;width: 60%;height:500px;border:5px solid cornflowerblue">
+    <div id="danqian" align="center" style="margin:20px auto;width: 60%;height:100px;font-size: 30px;">
+       当前日期： <span id="riqi"></span>
+        <input id="jiajian" type="text" placeholder="只能输入数字" />&nbsp;&nbsp;<button onclick="jisuan()" class="Button Button--primary Button--blue">计算</button><br>
+    </div>
+    <div  style="margin:30px auto;width: 60%;height:100px;font-size: 30px">
+        <pre style="">
+            ∨
+            ∨
+            ∨
+            ∨
+        </pre>
+        计算后的日期： <span id="jieguo"></span>
+    </div>
+
+</div>
+<script type="text/javascript">
+    var riqi=document.getElementById("riqi");
+    var date;
+    var reg=/\d/;
+    var number;
+
+
+    window.onload=function riqi2(){
+        date=new Date();
+        riqi.innerHTML=formatDate(date);
+    }
+
+
+   function formatDate(time){
+       var date = new Date(time);
+       var year = date.getFullYear(),
+           month = date.getMonth() + 1,//月份是从0开始的
+           day = date.getDate(),
+           hour = date.getHours(),
+           min = date.getMinutes(),
+           sec = date.getSeconds();
+       var newTime = year + '年' +
+           month + '月' +
+           day + '日' ;
+       return newTime;
+   }
+   function jisuan() {
+   	number=0;
+   	document.getElementById("jieguo").innerHTML="";
+       number=Number(document.getElementById("jiajian").value);
+       if(!reg.test(number)){
+           alert("只能输入数字！");
+           return;
+       }
+       if(number==""){
+           alert("计算框的值不能为空!");
+           return;
+       }
+       date=new Date();
+      date.setTime(date.getTime()+number*1000 * 60 * 60 * 24);
+
+      if(isNaN(date.getTime())){
+      	alert("输入的数字太大或太小了!");
+           return;
+      }
+
+       document.getElementById("jieguo").innerHTML=formatDate(date);
+   }
+</script>
+</body>
+</html>

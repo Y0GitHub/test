@@ -1,0 +1,113 @@
+﻿<!DOCTYPE HTML>
+<html xmlns:th="http://ww.thymeleaf.org" lang="zh"
+      data-hairline="true" data-theme="light" data-focus-method="pointer">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+  <title>QQ登录</title> 
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1" /> 
+  <title>登录QQ</title> 
+  <link href="css.css" rel="stylesheet" /> 
+ 
+ </head> 
+ <body class="EntrySign-body"> 
+  <div id="root"> 
+   <div> 
+    <div class="LoadingBar"></div> 
+    <main role="main" class="App-main"> 
+     <div class="SignFlowHomepage"> 
+      <div class="SignFlowHomepage-content"> 
+       <div id="content" class="Card SignContainer-content" style="opacity: 0.95"> 
+        <div class="SignFlowHeader" style="padding-bottom:5px"> 
+         <div class="SignFlowHeader-slogen">
+          登录QQ
+         </div> 
+        </div> 
+        <div class="SignContainer-inner"> 
+         <div class="Login-content"> 
+          <form novalidate=""
+                class="SignFlow" data-za-detail-view-path-module="SignInForm"
+                                       data-za-extra-module="{&quot;card&quot;:{&quot;content&quot;:null}}">
+          <div class="SignFlow-account">
+           <div class="SignFlow-supportedCountriesSelectContainer"></div> 
+           <div class="SignFlowInput SignFlow-accountInputContainer"> 
+            <div class="SignFlow-accountInput Input-wrapper">
+             <input  id="QQ" name="QQ" type="text" class="Input" placeholder="QQ号只能输入数字" value="" />
+            </div> 
+            <div class="SignFlowInput-errorMask SignFlowInput-requiredErrorMask SignFlowInput-errorMask--hidden"></div> 
+           </div> 
+          </div> 
+          <div class="SignFlow-password"> 
+           <div class="SignFlowInput"> 
+            <div class="Input-wrapper">
+             <input id="password" name="password" type="password" class="Input" placeholder="密码可用数字、字母及特殊字符等" value="" /> 
+            </div> 
+            <div class="SignFlowInput-errorMask SignFlowInput-requiredErrorMask SignFlowInput-errorMask--hidden"></div> 
+           </div> 
+           <button tabindex="-1" type="button" class="Button SignFlow-switchPassword Button--plain"> 
+            <svg width="24" height="20" viewbox="0 0 24 24" class="Icon SignFlow-switchPasswordIcon Icon--inconspicuous" aria-hidden="true" style="vertical-align: middle; height: 20px; width: 24px;"> 
+             <title></title> 
+            </svg> </button> 
+          </div> 
+          <button type="submit" class="Button SignFlow-submitButton Button--primary Button--blue" onclick="tijiao()">登录 </button> 
+          <p id="tishi" style="color: red"></p> 
+          </form>
+         </div> 
+        </div> 
+       </div> 
+      </div> 
+     </div> 
+    </main> 
+   </div> 
+  </div> 
+  <script type="text/javascript">
+
+    var QQs=["111111","12345678911"];
+    var passwords=["10086+","+10086"];
+    var tishi=document.getElementById("tishi");
+    var QQ_d=/[0-9]+$/;//是否包含数字以外的字符
+    var kongge=/\s/g;
+function tijiao(){
+    tishi.innerHTML="";
+    var QQ=document.getElementById("QQ").value;
+    var password=document.getElementById("password").value;
+    var content=document.getElementById("content");
+   
+
+    //验证QQ与密码是否为空
+    if(QQ==""||password==""){
+        tishi.innerHTML="QQ号或密码不能为空！";
+        return false;
+    }
+    
+
+    if((!QQ_d.test(QQ))){
+        tishi.innerHTML="QQ号只能输入数字!且不能输入负数，小数等";
+        return false;
+    }
+    if((QQ.length<6||QQ.length>11)){
+        tishi.innerHTML="QQ号只能输入6到11位的数字！";
+       return false;
+    }
+    if(kongge.test(password)){
+        tishi.innerHTML="密码不能有空格！";
+       return false;
+    }
+    if((password.length<6||password.length>11)){
+        tishi.innerHTML="密码只能输入6到11位的字符！";
+        return false;
+    }
+    if((QQs.indexOf(QQ)==-1)){
+        tishi.innerHTML="该QQ号未注册！";
+        return false;
+    }
+    /*if(!(QQs.indexOf(QQ)==passwords.indexOf(password))){
+        tishi.innerHTML="QQ号与密码不匹配！";
+     return false;
+    }
+    
+    content.innerHTML="<span style='color: red;font-size: 50px'>恭喜<span style='font-size: 59px;color: firebrick'>"+QQ+"</span>登录成功!</span>";*/
+
+}
+</script>  
+ </body>
+</html>
