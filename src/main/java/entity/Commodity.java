@@ -20,10 +20,19 @@ public class Commodity {
     private String commodityName;
     private double commodityPrice;
     private String commodityDescription;
+    private int version;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getCommodityId() {
         return commodityId;
+    }
+    @Version
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 
     public void setCommodityId(long commodityId) {

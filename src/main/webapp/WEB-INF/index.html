@@ -31,7 +31,7 @@
 
     <div class="Hui-article">
         <article class="cl pd-20">
-            <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l"><a href="javascript:;" onclick="modal(this,'add')"
+            <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l"><a href="javascript:;" onclick="modal(this,null,'add')"
                                                                        class="btn btn-primary radius"> 添加</a></span>
                 <!--<span class="Huialert Huialert-error"><i class="Hui-iconfont">&#xe6a6;
                 </i><span th:if="${#fields.hasErrors('commodityId')}" th:errors="">错误状态提示
@@ -67,7 +67,7 @@
                         <td th:text="${co.commodityPrice}"></td>
                         <td th:text="${co.commodityDescription}"></td>
                         <td>
-                            <button class="btn btn-secondary radius" onclick="modal(this,'update')">修改</button>
+                            <button class="btn btn-secondary radius" th:onclick="'javascript:modal('+this+','+${co.version}+',\'update\''+')'">修改</button>
                             <button class="btn btn-danger radius" th:onclick="'javascript:del('+${co.commodityId}+')'">删除</button>
                         </td>
                     </tr>
@@ -109,7 +109,7 @@
 
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" th:inline="javascript">
-    function modal(obj, flag) {
+    function modal(obj,version, flag) {
         $("input[name='commodityId']").val("");
         $("input[name='commodityName']").val("");
         $("input[name='commodityPrice']").val("");
@@ -131,6 +131,7 @@
             $("input[name='commodityPrice']").val(td[3].innerHTML);
             $("input[name='commodityDescription']").val(td[4].innerHTML);
             $(".modal-title").html("编辑商品ID:"+td[1].innerHTML);
+            $("#modal").append("<input type='text' name='version' value='"+version+"' />")
         }
         $("#modal-demo").modal('toggle');
     }

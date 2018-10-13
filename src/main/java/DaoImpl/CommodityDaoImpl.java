@@ -28,7 +28,6 @@ public class CommodityDaoImpl extends HibernateDaoSupport implements CommodityDa
         pageUitl.setSize(pageUitl.getSize()<0?0:pageUitl.getSize());
         DetachedCriteria criteria=DetachedCriteria.forClass(Commodity.class);
         if(condition!=null&&!("".equals(condition))){
-            System.out.println("--"+condition+"----");
             criteria.add(Restrictions.like("commodityName",(String) "%"+condition+"%"));
         }
         if((pageUitl.getCount())==-1){

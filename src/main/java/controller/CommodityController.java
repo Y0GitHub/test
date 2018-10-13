@@ -31,14 +31,14 @@ public class CommodityController {
     }
     @PostMapping(value = {"/updateCommodity"})
     public String update(@Valid Commodity commodity, BindingResult result){
-        System.out.println(commodity.getCommodityId()+"-*-*-*-*");
+
         commodityDao.updateCommodity(commodity);
         return "redirect:/list";
     }
 
     @PostMapping(value = {"/addCommodity"})
     public String add(@Valid Commodity commodity, BindingResult result){
-        System.out.println(commodity.getCommodityId()+"-*-*-*-*");
+
         commodityDao.addCommodity(commodity);
         return "redirect:/list";
     }
