@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface UserDao  {
     List<User> findOne(String condition);
+    List<User> login(User user);
 }

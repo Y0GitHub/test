@@ -19,10 +19,6 @@ import javax.validation.Valid;
 public class CommodityController {
     @Autowired
     private CommodityDao commodityDao;
-    @RequestMapping("/")
-    public String a(){
-        return "redirect:/list";
-    }
     @RequestMapping("/list")
     public String index(Model model, @ModelAttribute("condition") String condition,
                         @RequestParam(name = "page",defaultValue = "0") int page,

@@ -29,6 +29,12 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
         List<User> list= JSONObject.parseArray(s,User.class);
        return list;
     }
+
+    public List<User> login(User user) {
+
+        return this.getHibernateTemplate().findByExample(user);
+    }
+
     @Resource
     public void setSessionFacotry(SessionFactory sessionFacotry) {
         super.setSessionFactory(sessionFacotry);
