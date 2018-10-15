@@ -52,6 +52,7 @@
           <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5-pre10" />
           <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.8" />
           <element id="library" level="project" name="Maven: com.alibaba:fastjson:1.1.23" />
+          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -11,7 +11,11 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 <mvc:annotation-driven></mvc:annotation-driven>
     <context:component-scan base-package="controller" />
-    <mvc:annotation-driven></mvc:annotation-driven>
+    <mvc:annotation-driven>
+       <!--<mvc:return-value-handlers>
+            <bean class="utlis.JsonReturnHandle"></bean>
+        </mvc:return-value-handlers>-->
+    </mvc:annotation-driven>
     <mvc:resources mapping="/static/**" location="/static/"></mvc:resources>
     <mvc:resources mapping="/lib/**" location="/lib/"></mvc:resources>
     <!--<mvc:annotation-driven enable-matrix-variables="true" />
